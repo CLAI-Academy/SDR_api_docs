@@ -1,0 +1,8 @@
+{
+  "label": "Campaigns",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Create, list, update, and delete campaigns with availability, lead magnets, and provider account links."
+  }
+}

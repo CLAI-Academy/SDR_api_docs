@@ -1,0 +1,8 @@
+{
+  "label": "Integration Credentials",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Store and manage credentials for external CRM integrations."
+  }
+}

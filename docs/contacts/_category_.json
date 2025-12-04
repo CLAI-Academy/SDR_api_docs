@@ -1,0 +1,8 @@
+{
+  "label": "Contacts",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Manage contacts in the SDR Agent platform. Create, update, list, and delete contacts for CRM integration."
+  }
+}

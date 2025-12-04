@@ -1,0 +1,8 @@
+{
+  "label": "Imports",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Manage import cohorts to group and enrich contacts from external sources."
+  }
+}

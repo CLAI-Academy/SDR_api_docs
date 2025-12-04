@@ -1,0 +1,8 @@
+{
+  "label": "Campaign Leads",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Consult and update leads created inside campaigns."
+  }
+}
