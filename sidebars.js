@@ -17,6 +17,7 @@
 const sidebars = {
   apiSidebar: [
     'intro',
+    'authentication',
     {
       type: 'category',
       label: 'Contacts',
