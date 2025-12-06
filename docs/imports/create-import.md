@@ -31,7 +31,6 @@ POST /imports/
 | `campaign_id` | UUID | No | Link import to a specific campaign |
 | `status` | string | No | Import status: "pending", "processing", "completed", "failed" (default: "pending") |
 | `total_rows` | integer | No | Expected number of contacts (default: 0) |
-| `mapping_json` | object | No | Field mapping configuration for data transformation |
 
 ## Response
 
@@ -49,12 +48,7 @@ curl -X POST "https://api.sdragent.com/imports/" \
     "source": "salesforce",
     "file_name": "salesforce_leads_q4_2024.csv",
     "status": "pending",
-    "total_rows": 500,
-    "mapping_json": {
-      "FirstName": "full_name",
-      "Email": "email",
-      "Company": "company"
-    }
+    "total_rows": 500
   }'
 ```
 
@@ -69,11 +63,6 @@ curl -X POST "https://api.sdragent.com/imports/" \
   "file_name": "salesforce_leads_q4_2024.csv",
   "status": "pending",
   "total_rows": 500,
-  "mapping_json": {
-    "FirstName": "full_name",
-    "Email": "email",
-    "Company": "company"
-  },
   "created_at": "2024-10-06T12:00:00Z",
   "updated_at": "2024-10-06T12:00:00Z"
 }
@@ -135,7 +124,6 @@ Missing or invalid authentication.
 
 - **Auto org_id**: Organization ID is automatically added by the authentication layer
 - **Campaign linking**: Imports can be linked to campaigns for lead generation workflows
-- **Mapping JSON**: Store field mapping configuration for data transformation from external sources
 - **Status tracking**: Update status as import progresses through workflow stages
 
 ## Next Steps
@@ -183,7 +171,6 @@ curl -X GET "https://api.sdragent.com/imports/?status=completed" \
     "file_name": "salesforce_leads_q4_2024.csv",
     "status": "completed",
     "total_rows": 500,
-    "mapping_json": {},
     "created_at": "2024-10-06T12:00:00Z",
     "updated_at": "2024-10-06T15:30:00Z"
   }
@@ -226,7 +213,6 @@ curl -X GET "https://api.sdragent.com/imports/7c9e6679-7425-40de-944b-e07fc1f90a
   "file_name": "salesforce_leads_q4_2024.csv",
   "status": "completed",
   "total_rows": 500,
-  "mapping_json": {},
   "created_at": "2024-10-06T12:00:00Z",
   "updated_at": "2024-10-06T15:30:00Z"
 }
@@ -261,7 +247,6 @@ Only provided fields are updated.
 | `file_name` | string | No | Original filename |
 | `status` | string | No | `pending`, `processing`, `completed`, `failed` |
 | `total_rows` | integer | No | Expected total rows |
-| `mapping_json` | object | No | Field mapping configuration |
 
 ### Example Request
 
@@ -286,7 +271,6 @@ curl -X PUT "https://api.sdragent.com/imports/7c9e6679-7425-40de-944b-e07fc1f90a
   "file_name": "salesforce_leads_q4_2024.csv",
   "status": "processing",
   "total_rows": 1250,
-  "mapping_json": {},
   "created_at": "2024-10-06T12:00:00Z",
   "updated_at": "2024-10-06T13:15:00Z"
 }

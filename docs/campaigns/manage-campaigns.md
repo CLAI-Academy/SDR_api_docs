@@ -31,17 +31,14 @@ POST /campaigns/
 | `availability_data.end_working` | string (HH:MM) | Yes | End time (24h, after start) |
 | `availability_data.weekend_work` | boolean | No | Allow weekend work (default: `false`) |
 | `availability_data.calendar_id` | string | Yes | Google Calendar ID |
-| `service_id` | UUID | No | Service identifier |
-| `icp_profile_id` | UUID | No | ICP profile ID |
-| `sdr_agent_id` | UUID | No | SDR agent ID |
+| `service_id` | UUID | Yes | Service identifier |
+| `icp_profile_id` | UUID | Yes | ICP profile ID |
 | `description` | string | No | Campaign description |
-| `status` | string | No | `draft`, `active`, `paused`, `archived` (default: `draft`) |
-| `target_meeting_type` | string | No | Meeting type label |
-| `review_required_default` | string | No | `human_review` (default) or `auto` |
-| `start_date` | date | No | ISO date |
-| `end_date` | date | No | ISO date |
-| `seller_name` | string | No | Seller name |
-| `provider_account_id` | UUID[] | No | Provider accounts to link (validated by channel) |
+| `status` | string | Yes | `draft`, `active`, `paused`, `archived` |
+| `target_meeting_type` | string | Yes | Meeting type label |
+| `review_required_default` | string | Yes | `human_review` (default) or `auto` |
+| `seller_name` | string | Yes | Seller name |
+| `provider_account_id` | UUID[] | Yes | Provider accounts to link (pass the IDs for both LinkedIn and Email accounts) |
 | `lead_magnet` | object | No | Inline lead magnet creation (see below) |
 | `publish_posts` | boolean | No | Whether to publish LinkedIn comments (default: `true`) |
 
@@ -64,8 +61,15 @@ curl -X POST "https://api.sdragent.com/campaigns/" \
     "name": "Outbound Q4 LatAm",
     "description": "Meetings for Fintech ICP",
     "status": "draft",
+    "service_id": "1c9f6c10-b4b6-4c79-b18a-2dc2b603d9c5",
+    "target_meeting_type": "Intro call",
+    "review_required_default": "human_review",
+    "seller_name": "Jane SDR",
     "icp_profile_id": "63b95f0e-7f67-45e9-9c5c-2d6edb7f1cfa",
-    "provider_account_id": ["a13e4e4f-3a8a-4fc5-9c2a-5f7fdaa4d9c2"],
+    "provider_account_id": [
+      "a13e4e4f-3a8a-4fc5-9c2a-5f7fdaa4d9c2",  // LinkedIn account ID
+      "b24f3b9d-5b1c-4d0f-a6e3-1b7b2d4e6f8a"   // Email account ID
+    ],
     "availability_data": {
       "start_working": "09:00",
       "end_working": "17:00",
@@ -117,7 +121,6 @@ GET /campaigns/
 |-----------|------|-------------|
 | `status` | string | Filter by `draft`, `active`, `paused`, `archived` |
 | `icp_profile_id` | UUID | Filter by ICP profile |
-| `sdr_agent_id` | UUID | Filter by SDR agent |
 
 ### Example Request
 
@@ -190,12 +193,9 @@ Send only fields to update.
 | `status` | string | `draft`, `active`, `paused`, `archived` |
 | `target_meeting_type` | string | Meeting type label |
 | `review_required_default` | string | `human_review` or `auto` |
-| `start_date` | date | ISO date |
-| `end_date` | date | ISO date |
 | `seller_name` | string | Seller name |
 | `service_id` | UUID | Service identifier |
 | `icp_profile_id` | UUID | ICP profile |
-| `sdr_agent_id` | UUID | SDR agent |
 | `availability_data` | object | Availability block (same shape as create) |
 | `publish_posts` | boolean | Whether to publish LinkedIn comments |
 
@@ -207,8 +207,8 @@ curl -X PUT "https://api.sdragent.com/campaigns/ea765b3d-1378-4da9-b374-5022d224
   -H "Content-Type: application/json" \
   -d '{
     "status": "active",
-    "start_date": "2024-10-15",
-    "end_date": "2025-01-31"
+    "target_meeting_type": "Intro call",
+    "publish_posts": false
   }'
 ```
 
