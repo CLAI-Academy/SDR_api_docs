@@ -27,8 +27,3 @@ Respuesta esperada en caso de falta de autenticación:
 }
 ```
 
-## Buenas prácticas
-
-- Guarda tu API Key en variables de entorno (por ejemplo `SDR_AGENT_API_KEY`) y no la incluyas en repositorios.
-- Rota la API Key si sospechas de uso indebido y elimina las claves antiguas.
-- Limita su uso a backends seguros; evita exponerla en clientes públicos.
